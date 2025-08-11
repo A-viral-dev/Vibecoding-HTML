@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>News Websites – Opinion & Editorial Sections</title>
+<style>
+:root {
+  --bg-main: #f5f7fa;
+  --bg-card: #ffffff;
+  --text-main: #1a1a1a;
+  --text-sub: #6b7280;
+  --border: #e5e7eb;
+  --accent: #0077b6;
+  --accent-hover: #005f8e;
+  --shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 2rem 1rem 4rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 0.3rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-sub);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+section {
+  max-width: 1300px;
+  margin: 0 auto 3rem;
+}
+
+section > h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #f9fafb;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content {
+  padding: 1rem 1.2rem 1.3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.content p {
+  font-size: 0.87rem;
+  color: var(--text-sub);
+  flex: 1;
+}
+
+.btn {
+  margin-top: 0.9rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  width: fit-content;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1.5rem 0.5rem 3rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+</head>
+<body>
+<h1>News Websites – Opinion & Editorial Sections</h1>
+<p class="subtitle">Click any card to open the outlet’s opinion page in a new tab</p>
+
+
+  <!-- ---------- INTERNATIONAL SOURCES ---------- -->
+  <section>
+    <h2>International News Sources</h2>
+    <div class="grid">
+      <!-- CNN -->
+      <div class="card" data-url="https://www.cnn.com/opinions">
+        <img src="https://logo.clearbit.com/cnn.com" alt="CNN logo" />
+        <div class="content">
+          <h3>CNN</h3>
+          <p>Global news with diverse opinion pieces and commentary</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- New York Times -->
+      <div class="card" data-url="https://www.nytimes.com/section/opinion">
+        <img src="https://logo.clearbit.com/nytimes.com" alt="NYT logo" />
+        <div class="content">
+          <h3>The&nbsp;New&nbsp;York&nbsp;Times</h3>
+          <p>Prestigious opinion section with columnists and editorials</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Washington Post -->
+      <div class="card" data-url="https://www.washingtonpost.com/opinions/">
+        <img src="https://logo.clearbit.com/washingtonpost.com" alt="WaPo logo" />
+        <div class="content">
+          <h3>Washington&nbsp;Post</h3>
+          <p>Political opinions and editorial commentary</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Guardian -->
+      <div class="card" data-url="https://www.theguardian.com/commentisfree">
+        <img src="https://assets.stickpng.com/images/5842f5c8a6515b1e0ad75b20.png" alt="Guardian logo" />
+        <div class="content">
+          <h3>The&nbsp;Guardian</h3>
+          <p>British perspective with global opinion content</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- BBC -->
+      <div class="card" data-url="https://www.bbc.com/future/tags/comment-analysis">
+        <img src="https://logo.clearbit.com/bbc.com" alt="BBC logo" />
+        <div class="content">
+          <h3>BBC</h3>
+          <p>Analysis and commentary on global affairs</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Financial Times -->
+      <div class="card" data-url="https://www.ft.com/opinion">
+        <img src="https://logo.clearbit.com/ft.com" alt="FT logo" />
+        <div class="content">
+          <h3>Financial&nbsp;Times</h3>
+          <p>Business and economic opinion pieces</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Wall Street Journal -->
+      <div class="card" data-url="https://www.wsj.com/opinion">
+        <img src="https://logo.clearbit.com/wsj.com" alt="WSJ logo" />
+        <div class="content">
+          <h3>Wall&nbsp;Street&nbsp;Journal</h3>
+          <p>Business-focused and political opinion content</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Reuters -->
+      <div class="card" data-url="https://www.reuters.com/commentary/breakingviews/">
+        <img src="https://logo.clearbit.com/reuters.com" alt="Reuters logo" />
+        <div class="content">
+          <h3>Reuters&nbsp;Breakingviews</h3>
+          <p>Financial commentary and analysis</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Atlantic -->
+      <div class="card" data-url="https://www.theatlantic.com/ideas/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/The-Atlantic-logo-vector.svg" alt="Atlantic logo" />
+        <div class="content">
+          <h3>The&nbsp;Atlantic</h3>
+          <p>Politics, culture, and opinion from U.S. magazine</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Economist -->
+      <div class="card" data-url="https://www.economist.com/topics/opinion">
+        <img src="https://logo.clearbit.com/economist.com" alt="Economist logo" />
+        <div class="content">
+          <h3>The&nbsp;Economist</h3>
+          <p>British publication with editorial analyses</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Al Jazeera -->
+      <div class="card" data-url="https://www.aljazeera.com/opinions/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ1x4pgVGfXjO7MmgZ8zgr8k1pacjtdEoudMtprU_yqdfs3q0jpvqrokplecDMUWIdGeOKzw" alt="Al Jazeera logo" />
+        <div class="content">
+          <h3>Al&nbsp;Jazeera</h3>
+          <p>Middle-East perspectives and global opinion content</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Forbes -->
+      <div class="card" data-url="https://www.forbes.com/opinions/">
+        <img src="https://logo.clearbit.com/forbes.com" alt="Forbes logo" />
+        <div class="content">
+          <h3>Forbes</h3>
+          <p>Business opinion content from global contributors</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Politico -->
+      <div class="card" data-url="https://www.politico.com/news/opinion">
+        <img src="https://logo.clearbit.com/politico.com" alt="Politico logo" />
+        <div class="content">
+          <h3>Politico</h3>
+          <p>U.S. and EU political news with opinion columns</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- INDIAN SOURCES ---------- -->
+  <section>
+    <h2>Indian News Sources</h2>
+    <div class="grid">
+      <!-- NDTV -->
+      <div class="card" data-url="https://www.ndtv.com/opinion">
+        <img src="https://logo.clearbit.com/ndtv.com" alt="NDTV logo" />
+        <div class="content">
+          <h3>NDTV</h3>
+          <p>Opinion articles and analysis by Indian experts</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Times of India -->
+      <div class="card" data-url="https://timesofindia.indiatimes.com/blogs/toi-editorials/">
+        <img src="https://static.toiimg.com/photo/92222747.cms" alt="TOI logo" />
+        <div class="content">
+          <h3>Times&nbsp;of&nbsp;India</h3>
+          <p>Editorials and opinion pieces on Indian affairs</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- The Hindu -->
+      <div class="card" data-url="https://www.thehindu.com/opinion/">
+        <img src="https://i.sstatic.net/8caUvm.jpg" alt="The Hindu logo" />
+        <div class="content">
+          <h3>The&nbsp;Hindu</h3>
+          <p>India’s newspaper of record with editorials</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Hindustan Times -->
+      <div class="card" data-url="https://www.hindustantimes.com/opinion">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Hindustan_Times_logo.svg" alt="HT logo" />
+        <div class="content">
+          <h3>Hindustan&nbsp;Times</h3>
+          <p>Opinion articles and commentary on Indian issues</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Indian Express -->
+      <div class="card" data-url="https://indianexpress.com/section/opinion/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/The_Indian_Express_logo.svg" alt="Indian Express logo" />
+        <div class="content">
+          <h3>Indian&nbsp;Express</h3>
+          <p>Editorial content on politics & public affairs</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Economic Times -->
+      <div class="card" data-url="https://economictimes.com/opinion/et-editorial">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/The_Economic_Times_logo.svg" alt="ET logo" />
+        <div class="content">
+          <h3>Economic&nbsp;Times</h3>
+          <p>Business opinion & economic editorials</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- LiveMint -->
+      <div class="card" data-url="https://www.livemint.com/opinion">
+        <img src="https://logo.clearbit.com/livemint.com" alt="Mint logo" />
+        <div class="content">
+          <h3>LiveMint</h3>
+          <p>Business newspaper with sharp opinion columns</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- The Wire -->
+      <div class="card" data-url="https://thewire.in/opinion">
+        <img src="https://logo.clearbit.com/thewire.in" alt="The Wire logo" />
+        <div class="content">
+          <h3>The&nbsp;Wire</h3>
+          <p>Independent news and opinion site</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Scroll.in -->
+      <div class="card" data-url="https://scroll.in/tag/opinion">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Scroll_India_Logo.png" alt="Scroll logo" />
+        <div class="content">
+          <h3>Scroll.in</h3>
+          <p>Digital-first publication with diverse opinion</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- The Quint -->
+      <div class="card" data-url="https://www.thequint.com/opinion">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/The_Quint_logo_with_purple_background.svg" alt="Quint logo" />
+        <div class="content">
+          <h3>The&nbsp;Quint</h3>
+          <p>English & Hindi news site with opinion pieces</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- News18 -->
+      <div class="card" data-url="https://www.news18.com/opinion/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/News_18_India.png" alt="News18 logo" />
+        <div class="content">
+          <h3>News18</h3>
+          <p>Opinion news and editorial articles</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+
+      <!-- Deccan Herald -->
+      <div class="card" data-url="https://www.deccanherald.com/top-opinion-news">
+        <img src="https://static.wikia.nocookie.net/logopedia/images/0/00/Deccan_herald.png/revision/latest?cb=20200423183144" alt="Deccan Herald logo" />
+        <div class="content">
+          <h3>Deccan&nbsp;Herald</h3>
+          <p>Opinion section covering Indian affairs</p>
+          <button class="btn">Visit Opinion Section</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+document.querySelectorAll(".card").forEach((card) => {
+  const url = card.dataset.url;
+  if (!url) return;
+
+  card.addEventListener("click", () => window.open(url, "_blank"));
+
+  const btn = card.querySelector(".btn");
+  btn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.open(url, "_blank");
+  });
+});
+</script>
+</body>
+</html>
