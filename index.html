@@ -1,422 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>News Websites – Opinion & Editorial Sections</title>
 <style>
-:root {
-  --bg-main: #f5f7fa;
-  --bg-card: #ffffff;
-  --text-main: #1a1a1a;
-  --text-sub: #6b7280;
-  --border: #e5e7eb;
-  --accent: #0077b6;
-  --accent-hover: #005f8e;
-  --shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.6;
-  padding: 2rem 1rem 4rem;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 0.3rem;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.subtitle {
-  text-align: center;
-  color: var(--text-sub);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-}
-
-section {
-  max-width: 1300px;
-  margin: 0 auto 3rem;
-}
-
-section > h2 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent);
-}
-
-.card img {
-  width: 100%;
-  height: 140px;
-  object-fit: contain;
-  background: #f9fafb;
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.content {
-  padding: 1rem 1.2rem 1.3rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.content h3 {
-  margin-bottom: 0.45rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.content p {
-  font-size: 0.87rem;
-  color: var(--text-sub);
-  flex: 1;
-}
-
-.btn {
-  margin-top: 0.9rem;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  width: fit-content;
-}
-
-.btn:hover {
-  background: var(--accent-hover);
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 1.5rem 0.5rem 3rem;
+  :root{
+    --bg-main: #f5f7fa;
+    --bg-card: #ffffff;
+    --text-main: #1a1a1a;
+    --text-sub: #6b7280;
+    --border: #e5e7eb;
+    --accent: #0077b6;
+    --accent-hover: #005f8e;
+    --shadow-sm: 0 3px 8px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 20px rgba(0,0,0,0.08);
+    --control-bg: rgba(255,255,255,0.7);
+    --control-text: #1a1a1a;
+    --muted: #9aa0a6;
   }
-  h1 {
-    font-size: 1.6rem;
+
+  /* Dark theme overrides */
+  body.dark {
+    --bg-main: #0f1724;
+    --bg-card: #0b1220;
+    --text-main: #e6eef8;
+    --text-sub: #b9c6d8;
+    --border: rgba(255,255,255,0.06);
+    --accent: #3db4ff;
+    --accent-hover: #66c8ff;
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.6);
+    --shadow-lg: 0 12px 36px rgba(0,0,0,0.7);
+    --control-bg: rgba(12,18,28,0.6);
+    --control-text: #e6eef8;
+    --muted: #8f9fb1;
   }
+
+  *{box-sizing: border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg-main);
+    color:var(--text-main);
+    line-height:1.6;
+    padding:2rem 1rem 4rem;
+    transition: background .25s ease, color .25s ease;
+  }
+
+  header.topbar{
+    max-width:1300px;
+    margin:0 auto 1.25rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    justify-content:space-between;
+  }
+
+  .brand{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  h1{font-size:1.6rem;font-weight:700;line-height:1}
+  .subtitle{color:var(--text-sub);font-size:.9rem}
+
+  /* Controls area (right) */
+  .controls{
+    display:flex;
+    gap:.6rem;
+    align-items:center;
+  }
+
+  .control-card{
+    display:flex;
+    gap:.6rem;
+    align-items:center;
+    background:var(--control-bg);
+    padding:.45rem;
+    border-radius:10px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-sm);
+    color:var(--control-text);
+    backdrop-filter: blur(6px);
+  }
+
+  .search {
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .search input{
+    border:1px solid var(--border);
+    background:transparent;
+    padding:.45rem .6rem;
+    border-radius:8px;
+    outline:none;
+    min-width:180px;
+    color:var(--control-text);
+    font-size:.95rem;
+  }
+  .search input::placeholder{color:var(--muted)}
+
+  /* layout toggle */
+  .layout-toggle{
+    display:inline-flex;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .layout-toggle button{
+    background:transparent;
+    color:var(--control-text);
+    border:0;
+    padding:.45rem .6rem;
+    cursor:pointer;
+    font-weight:600;
+    min-width:36px;
+  }
+  .layout-toggle button.active{
+    background:var(--accent);
+    color:#fff;
+  }
+
+  /* dark toggle */
+  .dark-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.25rem .35rem;
+  }
+  .dark-toggle input[type="checkbox"]{
+    width:42px;
+    height:24px;
+    appearance:none;
+    background:rgba(255,255,255,0.12);
+    border-radius:999px;
+    position:relative;
+    outline:none;
+    border:1px solid var(--border);
+    cursor:pointer;
+  }
+  .dark-toggle input:checked{
+    background:linear-gradient(90deg,var(--accent), var(--accent-hover));
+  }
+  .dark-toggle input::after{
+    content:'';
+    position:absolute;
+    width:18px;height:18px;border-radius:50%;
+    background:#fff; top:50%; transform:translateY(-50%); left:3px;
+    transition:left .18s ease, background .18s ease;
+  }
+  .dark-toggle input:checked::after{ left:21px; background:#fff; }
+
+  /* Page sections */
+  section{
+    max-width:1300px;
+    margin:0 auto 2.25rem;
+  }
+  section > h2{
+    margin-bottom:1rem;
+    font-size:1.1rem;
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  .grid{
+    display:grid;
+    gap:1.25rem;
+    /* default auto-fit */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    transition: all .2s ease;
+  }
+
+  /* forced single or two columns via classes */
+  .grid.cols-1{
+    grid-template-columns: 1fr;
+  }
+  .grid.cols-2{
+    grid-template-columns: repeat(2, minmax(220px,1fr));
+  }
+.grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
 }
+.grid.cols-4 {
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+}
+
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    cursor:pointer;
+  }
+  .card:hover, .card:focus-within{
+    transform: translateY(-6px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--accent);
+  }
+
+  .card img{
+    width:100%;
+    height:140px;
+    object-fit:contain;
+    background:#f9fafb;
+    padding:1rem;
+    border-bottom:1px solid var(--border);
+  }
+  body.dark .card img{ background: rgba(255,255,255,0.03) }
+
+  .content{ padding:1rem 1.2rem 1.3rem; flex:1; display:flex; flex-direction:column; }
+  .content h3{ margin-bottom:.45rem; font-size:1.05rem; font-weight:600; }
+  .content p{ font-size:.87rem; color:var(--text-sub); flex:1; }
+  .btn{
+    margin-top:.9rem;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:.5rem 1rem;
+    border-radius:8px;
+    font-size:.85rem;
+    cursor:pointer;
+    transition: background .15s ease;
+    width:fit-content;
+  }
+  .btn:hover{ background:var(--accent-hover) }
+
+  /* small devices */
+  @media (max-width:480px){
+    body{ padding:1.2rem .6rem 2.5rem; }
+    header.topbar{ gap:.6rem; align-items:flex-start; flex-direction:column; }
+    .controls{ width:100%; justify-content:space-between; }
+    .search input{ min-width:120px; }
+    h1{ font-size:1.35rem }
+  }
+
+  /* make cards keyboard-focusable */
+  .card[tabindex="0"]{ outline:none; }
+  .sr-only{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+  /* subtle empty state text when search yields no matches */
+  .no-results{
+    text-align:center;
+    color:var(--muted);
+    padding:1.2rem;
+  }
 </style>
 </head>
 <body>
-<h1>News Websites – Opinion & Editorial Sections</h1>
-<p class="subtitle">Click any card to open the outlet’s opinion page in a new tab</p>
+  <header class="topbar" role="banner">
+    <div class="brand" aria-hidden="false">
+      <h1>News Websites – Opinion & Editorial Sections</h1>
+      <p class="subtitle">Click any card to open the outlet’s opinion page in a new tab</p>
+    </div>
 
+    <div class="controls" role="region" aria-label="Controls">
+      <div class="control-card" title="Search publications">
+        <label for="search" class="sr-only">Search publications</label>
+        <div class="search" role="search" aria-label="Search publications">
+          <input id="search" type="search" placeholder="Search publications..." aria-label="Search publications" />
+        </div>
+      </div>
+
+      <div class="control-card" title="Toggle layout">
+  <div class="layout-toggle" role="group" aria-label="Choose columns">
+    <button id="layout-auto" data-cols="auto" class="active" aria-pressed="true" title="Auto fit">A</button>
+    <button id="layout-one" data-cols="1" aria-pressed="false" title="Single column">1</button>
+    <button id="layout-two" data-cols="2" aria-pressed="false" title="Two columns">2</button>
+    <button id="layout-three" data-cols="3" aria-pressed="false" title="Three columns">3</button>
+    <button id="layout-four" data-cols="4" aria-pressed="false" title="Four columns">4</button>
+  </div>
+</div>
+
+      <div class="control-card dark-toggle" title="Toggle dark mode">
+        <label for="darkmode" class="sr-only">Toggle dark mode</label>
+        <input id="darkmode" type="checkbox" role="switch" aria-checked="false" />
+        <span style="font-size:.9rem;color:var(--muted)">Dark</span>
+      </div>
+    </div>
+  </header>
 
   <!-- ---------- INTERNATIONAL SOURCES ---------- -->
-  <section>
+  <section id="international">
     <h2>International News Sources</h2>
-    <div class="grid">
-      <!-- CNN -->
-      <div class="card" data-url="https://www.cnn.com/opinions.">
+    <div class="grid" id="grid-international" data-section="international">
+      <!-- card examples (kept same content as original but with tabindex and dataset for search) -->
+
+      <div class="card" data-url="https://www.cnn.com/opinions" tabindex="0" data-keywords="cnn global news opinions commentary">
         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg" alt="CNN logo" />
         <div class="content">
           <h3>CNN</h3>
           <p>Global news with diverse opinion pieces and commentary</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open CNN opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- New York Times -->
-      <div class="card" data-url="https://www.nytimes.com/section/opinion">
+      <div class="card" data-url="https://www.nytimes.com/section/opinion" tabindex="0" data-keywords="the new york times nytimes opinion columnists editorials">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png" alt="NYT logo" />
         <div class="content">
           <h3>The&nbsp;New&nbsp;York&nbsp;Times</h3>
           <p>Prestigious opinion section with columnists and editorials</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open NYT opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Washington Post -->
-      <div class="card" data-url="https://www.washingtonpost.com/opinions/">
+      <div class="card" data-url="https://www.washingtonpost.com/opinions/" tabindex="0" data-keywords="washington post wa po opinions editorial commentary">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg" alt="WaPo logo" />
         <div class="content">
           <h3>Washington&nbsp;Post</h3>
           <p>Political opinions and editorial commentary</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Washington Post opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Guardian -->
-      <div class="card" data-url="https://www.theguardian.com/commentisfree">
+      <div class="card" data-url="https://www.theguardian.com/commentisfree" tabindex="0" data-keywords="the guardian opinion commentisfree britain global">
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/The_Guardian.svg" alt="Guardian logo" />
         <div class="content">
           <h3>The&nbsp;Guardian</h3>
           <p>British perspective with global opinion content</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Guardian opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- BBC -->
-      <div class="card" data-url="https://www.bbc.com/future/tags/comment-analysis">
+      <div class="card" data-url="https://www.bbc.com/future/tags/comment-analysis" tabindex="0" data-keywords="bbc analysis commentary global affairs">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/BBC_News_2022_%28Alt%29.svg" alt="BBC logo" />
         <div class="content">
           <h3>BBC</h3>
           <p>Analysis and commentary on global affairs</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open BBC opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Financial Times -->
-      <div class="card" data-url="https://www.ft.com/opinion">
+      <div class="card" data-url="https://www.ft.com/opinion" tabindex="0" data-keywords="financial times ft opinion business economics">
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Financial_Times_corporate_logo_%28no_background%29.svg" alt="FT logo" />
         <div class="content">
           <h3>Financial&nbsp;Times</h3>
           <p>Business and economic opinion pieces</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Financial Times opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Wall Street Journal -->
-      <div class="card" data-url="https://www.wsj.com/opinion">
+      <div class="card" data-url="https://www.wsj.com/opinion" tabindex="0" data-keywords="wall street journal wsj opinion business political">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/WSJ_Logo.svg" alt="WSJ logo" />
         <div class="content">
           <h3>Wall&nbsp;Street&nbsp;Journal</h3>
           <p>Business-focused and political opinion content</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open WSJ opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Reuters -->
-      <div class="card" data-url="https://www.reuters.com/commentary/breakingviews/">
+      <div class="card" data-url="https://www.reuters.com/commentary/breakingviews/" tabindex="0" data-keywords="reuters breakingviews financial commentary analysis">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Reuters_Logo.svg" alt="Reuters logo" />
         <div class="content">
           <h3>Reuters&nbsp;Breakingviews</h3>
           <p>Financial commentary and analysis</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Reuters Breakingviews">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Atlantic -->
-      <div class="card" data-url="https://www.theatlantic.com/ideas/">
+      <div class="card" data-url="https://www.theatlantic.com/ideas/" tabindex="0" data-keywords="the atlantic ideas politics culture opinion magazine">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/The-Atlantic-logo-vector.svg" alt="Atlantic logo" />
         <div class="content">
           <h3>The&nbsp;Atlantic</h3>
           <p>Politics, culture, and opinion from U.S. magazine</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Atlantic opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- The Economist -->
-      <div class="card" data-url="https://www.economist.com/topics/opinion">
+      <div class="card" data-url="https://www.economist.com/topics/opinion" tabindex="0" data-keywords="the economist opinion editorial analyses british publication">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/The_Economist_Logo.svg" alt="Economist logo" />
         <div class="content">
           <h3>The&nbsp;Economist</h3>
           <p>British publication with editorial analyses</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Economist opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Al Jazeera -->
-      <div class="card" data-url="https://www.aljazeera.com/opinions/">
+      <div class="card" data-url="https://www.aljazeera.com/opinions/" tabindex="0" data-keywords="al jazeera opinion middle east perspectives global">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ1x4pgVGfXjO7MmgZ8zgr8k1pacjtdEoudMtprU_yqdfs3q0jpvqrokplecDMUWIdGeOKzw" alt="Al Jazeera logo" />
         <div class="content">
           <h3>Al&nbsp;Jazeera</h3>
           <p>Middle-East perspectives and global opinion content</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Al Jazeera opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Forbes -->
-      <div class="card" data-url="https://www.forbes.com/opinions/">
+      <div class="card" data-url="https://www.forbes.com/opinions/" tabindex="0" data-keywords="forbes opinions business contributors">
         <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Forbes_logo.svg" alt="Forbes logo" />
         <div class="content">
           <h3>Forbes</h3>
           <p>Business opinion content from global contributors</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Forbes opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Politico -->
-      <div class="card" data-url="https://www.politico.com/news/opinion">
+      <div class="card" data-url="https://www.politico.com/news/opinion" tabindex="0" data-keywords="politico opinion us eu political columns">
         <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/POLITICOLOGO.svg" alt="Politico logo" />
         <div class="content">
           <h3>Politico</h3>
           <p>U.S. and EU political news with opinion columns</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Politico opinion">Visit Opinion Section</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ---------- INDIAN SOURCES ---------- -->
-  <section>
+  <section id="indian">
     <h2>Indian News Sources</h2>
-    <div class="grid">
-      <!-- NDTV -->
-      <div class="card" data-url="https://www.ndtv.com/opinion">
+    <div class="grid" id="grid-indian" data-section="indian">
+      <div class="card" data-url="https://www.ndtv.com/opinion" tabindex="0" data-keywords="ndtv opinion articles analysis indian experts">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/NDTV_logo.svg" alt="NDTV logo" />
         <div class="content">
           <h3>NDTV</h3>
           <p>Opinion articles and analysis by Indian experts</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open NDTV opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Times of India -->
-      <div class="card" data-url="https://timesofindia.indiatimes.com/blogs/toi-editorials/">
+      <div class="card" data-url="https://timesofindia.indiatimes.com/blogs/toi-editorials/" tabindex="0" data-keywords="times of india toi editorials opinion india">
         <img src="https://static.toiimg.com/photo/92222747.cms" alt="TOI logo" />
         <div class="content">
           <h3>Times&nbsp;of&nbsp;India</h3>
           <p>Editorials and opinion pieces on Indian affairs</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Times of India opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- The Hindu -->
-      <div class="card" data-url="https://www.thehindu.com/opinion/">
+      <div class="card" data-url="https://www.thehindu.com/opinion/" tabindex="0" data-keywords="the hindu opinion editorial india newspaper">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/The_Hindu_logo.svg" alt="The Hindu logo" />
         <div class="content">
           <h3>The&nbsp;Hindu</h3>
           <p>India’s newspaper of record with editorials</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Hindu opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Hindustan Times -->
-      <div class="card" data-url="https://www.hindustantimes.com/opinion">
+      <div class="card" data-url="https://www.hindustantimes.com/opinion" tabindex="0" data-keywords="hindustan times opinion commentary india">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Hindustan_Times_logo.svg" alt="HT logo" />
         <div class="content">
           <h3>Hindustan&nbsp;Times</h3>
           <p>Opinion articles and commentary on Indian issues</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Hindustan Times opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Indian Express -->
-      <div class="card" data-url="https://indianexpress.com/section/opinion/">
+      <div class="card" data-url="https://indianexpress.com/section/opinion/" tabindex="0" data-keywords="indian express opinion politics public affairs editorials">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/The_Indian_Express_logo.svg" alt="Indian Express logo" />
         <div class="content">
           <h3>Indian&nbsp;Express</h3>
           <p>Editorial content on politics & public affairs</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Indian Express opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Economic Times -->
-      <div class="card" data-url="https://economictimes.com/opinion/et-editorial">
+      <div class="card" data-url="https://economictimes.com/opinion/et-editorial" tabindex="0" data-keywords="economic times et opinion business economic editorials">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/The_Economic_Times_logo.svg" alt="ET logo" />
         <div class="content">
           <h3>Economic&nbsp;Times</h3>
           <p>Business opinion & economic editorials</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Economic Times opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- LiveMint -->
-      <div class="card" data-url="https://www.livemint.com/opinion">
+      <div class="card" data-url="https://www.livemint.com/opinion" tabindex="0" data-keywords="livemint opinion business newspaper columns">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Mint_%28newspaper%29_logo.svg" alt="Mint logo" />
         <div class="content">
           <h3>LiveMint</h3>
           <p>Business newspaper with sharp opinion columns</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open LiveMint opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- The Wire -->
-      <div class="card" data-url="https://thewire.in/opinion">
+      <div class="card" data-url="https://thewire.in/opinion" tabindex="0" data-keywords="the wire opinion independent news india">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Wirelogo.svg" alt="The Wire logo" />
         <div class="content">
           <h3>The&nbsp;Wire</h3>
           <p>Independent news and opinion site</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Wire opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Scroll.in -->
-      <div class="card" data-url="https://scroll.in/tag/opinion">
+      <div class="card" data-url="https://scroll.in/tag/opinion" tabindex="0" data-keywords="scroll.in opinion digital publication india">
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Scroll_India_Logo.png" alt="Scroll logo" />
         <div class="content">
           <h3>Scroll.in</h3>
           <p>Digital-first publication with diverse opinion</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Scroll.in opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- The Quint -->
-      <div class="card" data-url="https://www.thequint.com/opinion">
+      <div class="card" data-url="https://www.thequint.com/opinion" tabindex="0" data-keywords="the quint opinion english hindi news">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/The_Quint_logo_with_purple_background.svg" alt="Quint logo" />
         <div class="content">
           <h3>The&nbsp;Quint</h3>
           <p>English & Hindi news site with opinion pieces</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open The Quint opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- News18 -->
-      <div class="card" data-url="https://www.news18.com/opinion/">
+      <div class="card" data-url="https://www.news18.com/opinion/" tabindex="0" data-keywords="news18 opinion editorial india">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/News_18_India.png" alt="News18 logo" />
         <div class="content">
           <h3>News18</h3>
           <p>Opinion news and editorial articles</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open News18 opinion">Visit Opinion Section</button>
         </div>
       </div>
 
-      <!-- Deccan Herald -->
-      <div class="card" data-url="https://www.deccanherald.com/top-opinion-news">
+      <div class="card" data-url="https://www.deccanherald.com/top-opinion-news" tabindex="0" data-keywords="deccan herald opinion indian affairs">
         <img src="https://upload.wikimedia.org/wikipedia/en/d/d7/Deccan_Herald_logo.svg" alt="Deccan Herald logo" />
         <div class="content">
           <h3>Deccan&nbsp;Herald</h3>
           <p>Opinion section covering Indian affairs</p>
-          <button class="btn">Visit Opinion Section</button>
+          <button class="btn" aria-label="Open Deccan Herald opinion">Visit Opinion Section</button>
         </div>
       </div>
     </div>
+    <div id="no-results-indian" class="no-results" style="display:none">No Indian publications match your search.</div>
   </section>
 
 <script>
-document.querySelectorAll(".card").forEach((card) => {
-  const url = card.dataset.url;
-  if (!url) return;
+  (function(){
+    // elements
+    const body = document.body;
+    const darkCheckbox = document.getElementById('darkmode');
+    const searchInput = document.getElementById('search');
+    const layoutOneBtn = document.getElementById('layout-one');
+    const layoutTwoBtn = document.getElementById('layout-two');
+    const grids = Array.from(document.querySelectorAll('.grid'));
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    const noResultsIndian = document.getElementById('no-results-indian');
 
-  card.addEventListener("click", () => window.open(url, "_blank"));
+    // --- Persistence: try to load prefs from localStorage ---
+    try {
+      const darkPref = localStorage.getItem('pref-dark');
+      if (darkPref === '1') {
+        body.classList.add('dark');
+        darkCheckbox.checked = true;
+        darkCheckbox.setAttribute('aria-checked','true');
+      }
+      const colsPref = localStorage.getItem('pref-cols') || 'auto';
+      setLayout(colsPref);
+      const lastSearch = localStorage.getItem('pref-search') || '';
+      if(lastSearch){
+        searchInput.value = lastSearch;
+      }
+    } catch (e) { /* ignore storage errors */ }
 
-  const btn = card.querySelector(".btn");
-  btn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    window.open(url, "_blank");
+    // --- Dark mode toggle ---
+    function toggleDarkMode(enabled){
+      if(enabled){
+        body.classList.add('dark');
+        darkCheckbox.setAttribute('aria-checked','true');
+        localStorage.setItem('pref-dark','1');
+      } else {
+        body.classList.remove('dark');
+        darkCheckbox.setAttribute('aria-checked','false');
+        localStorage.setItem('pref-dark','0');
+      }
+    }
+    darkCheckbox.addEventListener('change', (e) => toggleDarkMode(e.target.checked));
+
+    // --- Layout toggle (1 or 2 columns) ---
+    function setLayout(cols) {
+  grids.forEach(g => {
+    g.classList.remove('cols-1', 'cols-2', 'cols-3', 'cols-4');
+    if (cols === '1') g.classList.add('cols-1');
+    else if (cols === '2') g.classList.add('cols-2');
+    else if (cols === '3') g.classList.add('cols-3');
+    else if (cols === '4') g.classList.add('cols-4');
+    // if 'auto', no class applied = default auto-fit
   });
+      // update active states
+      document.querySelectorAll('.layout-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cols === cols);
+    btn.setAttribute('aria-pressed', btn.dataset.cols === cols ? 'true' : 'false');
+  });
+
+  localStorage.setItem('pref-cols', cols);
+}
+
+// Hook up all layout buttons dynamically
+    document.querySelectorAll('.layout-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => setLayout(btn.dataset.cols));
 });
+
+    // --- Search/filter functionality ---
+    function normalizeText(s){ return (s || '').toString().toLowerCase().trim(); }
+    function filterCards(query){
+      const q = normalizeText(query);
+      let anyIndianVisible = false;
+      let anyGlobalVisible = false;
+      allCards.forEach(card => {
+        const title = normalizeText(card.querySelector('h3')?.textContent);
+        const desc = normalizeText(card.querySelector('p')?.textContent);
+        const keywords = normalizeText(card.dataset.keywords || '');
+        const match = q === '' || title.includes(q) || desc.includes(q) || keywords.includes(q);
+        card.style.display = match ? '' : 'none';
+        // determine if card is in indian or international section
+        const grid = card.closest('.grid');
+        if(match && grid && grid.dataset.section === 'indian') anyIndianVisible = true;
+        if(match && grid && grid.dataset.section === 'international') anyGlobalVisible = true;
+      });
+
+      // show/hide no results text for each section
+      if(!anyIndianVisible) noResultsIndian.style.display = 'block'; else noResultsIndian.style.display = 'none';
+      // (If you want a global "no results" for all sections, you can add one similarly)
+      localStorage.setItem('pref-search', query);
+    }
+
+    searchInput.addEventListener('input', (e) => filterCards(e.target.value));
+    // init filter (if lastSearch loaded)
+    filterCards(searchInput.value || '');
+
+    // --- Card click & button behavior (open link in new tab) ---
+    function openCard(card){
+      const url = card.dataset.url;
+      if(!url) return;
+      window.open(url, '_blank', 'noopener');
+    }
+    allCards.forEach(card => {
+      // click whole card
+      card.addEventListener('click', () => openCard(card));
+      // button inside (stop propagation so click still opens but we keep behavior consistent)
+      const btn = card.querySelector('.btn');
+      if(btn){
+        btn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          openCard(card);
+        });
+      }
+      // keyboard accessibility: Enter or Space opens
+      card.addEventListener('keydown', (ev) => {
+        if(ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar'){
+          ev.preventDefault();
+          openCard(card);
+        }
+      });
+    });
+
+    // Accessibility: focus outlines on keyboard navigation
+    document.addEventListener('keyup', function(e){
+      if(e.key === 'Tab') document.body.classList.add('show-focus');
+    });
+
+    // allow clearing search via Escape
+    searchInput.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') {
+        searchInput.value = '';
+        filterCards('');
+      }
+    });
+
+    // small enhancement: clicking layout toggle numeric labels toggles to that layout
+    // already wired above
+
+    // ensure initial ARIA states reflect current UI
+    darkCheckbox.setAttribute('aria-checked', darkCheckbox.checked ? 'true' : 'false');
+
+    // optional: if user wants to reset preferences quickly (uncomment to expose)
+    // window.resetPrefs = () => { localStorage.removeItem('pref-dark'); localStorage.removeItem('pref-cols'); localStorage.removeItem('pref-search'); location.reload(); };
+
+  })();
 </script>
 </body>
 </html>
-
