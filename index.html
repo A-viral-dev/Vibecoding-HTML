@@ -19,6 +19,64 @@
     --control-text: #1a1a1a;
     --muted: #9aa0a6;
   }
+/* Flex for all three controls on desktop */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* right align desktop */
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch; /* make search full width */
+  }
+
+  /* Merge Layout + Dark toggle in mobile */
+  .layout-card,
+  .dark-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Wrap them together in one row under Search */
+  .layout-card {
+    order: 1;
+    flex: 1;
+  }
+
+  .dark-toggle {
+    order: 1;
+  }
+
+  /* Group them visually */
+  .layout-card,
+  .dark-toggle {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* Force them on same line */
+  .layout-card, .dark-toggle {
+    width: auto;
+  }
+
+  /* Use flex container for both */
+  .layout-card, .dark-toggle {
+    margin-top: 0.5rem;
+  }
+
+  .layout-card, .dark-toggle {
+    display: inline-flex;
+  }
+
+  .layout-card, .dark-toggle {
+    vertical-align: middle;
+  }
+}
 
   /* Dark theme overrides */
 
@@ -271,36 +329,40 @@ body.dark img[alt*="Wire"] {
 </head>
 <body>
   <header class="topbar" role="banner">
-    <div class="brand" aria-hidden="false">
-      <h1>News Websites – Opinion & Editorial Sections</h1>
-      <p class="subtitle">Click any card to open the outlet’s opinion page in a new tab</p>
-    </div>
-
-    <div class="controls" role="region" aria-label="Controls">
-      <div class="control-card" title="Search publications">
-        <label for="search" class="sr-only">Search publications</label>
-        <div class="search" role="search" aria-label="Search publications">
-          <input id="search" type="search" placeholder="Search publications..." aria-label="Search publications" />
-        </div>
-      </div>
-
-      <div class="control-card" title="Toggle layout">
-  <div class="layout-toggle" role="group" aria-label="Choose columns">
-    <button id="layout-auto" data-cols="auto" class="active" aria-pressed="true" title="Auto fit">A</button>
-    <button id="layout-one" data-cols="1" aria-pressed="false" title="Single column">1</button>
-    <button id="layout-two" data-cols="2" aria-pressed="false" title="Two columns">2</button>
-    <button id="layout-three" data-cols="3" aria-pressed="false" title="Three columns">3</button>
-    <button id="layout-four" data-cols="4" aria-pressed="false" title="Four columns">4</button>
+  <div class="brand" aria-hidden="false">
+    <h1>News Websites – Opinion & Editorial Sections</h1>
+    <p class="subtitle">Click any card to open the outlet’s opinion page in a new tab</p>
   </div>
-</div>
 
-      <div class="control-card dark-toggle" title="Toggle dark mode">
-        <label for="darkmode" class="sr-only">Toggle dark mode</label>
-        <input id="darkmode" type="checkbox" role="switch" aria-checked="false" />
-        <span style="font-size:.9rem;color:var(--muted)">Dark</span>
+  <div class="controls" role="region" aria-label="Controls">
+    <!-- Search -->
+    <div class="control-card search-card" title="Search publications">
+      <label for="search" class="sr-only">Search publications</label>
+      <div class="search" role="search" aria-label="Search publications">
+        <input id="search" type="search" placeholder="Search publications..." aria-label="Search publications" />
       </div>
     </div>
-  </header>
+
+    <!-- Layout toggle -->
+    <div class="control-card layout-card" title="Toggle layout">
+      <div class="layout-toggle" role="group" aria-label="Choose columns">
+        <button id="layout-auto" data-cols="auto" class="active" aria-pressed="true" title="Auto fit">A</button>
+        <button id="layout-one" data-cols="1" aria-pressed="false" title="Single column">1</button>
+        <button id="layout-two" data-cols="2" aria-pressed="false" title="Two columns">2</button>
+        <button id="layout-three" data-cols="3" aria-pressed="false" title="Three columns">3</button>
+        <button id="layout-four" data-cols="4" aria-pressed="false" title="Four columns">4</button>
+      </div>
+    </div>
+
+    <!-- Dark mode toggle -->
+    <div class="control-card dark-toggle" title="Toggle dark mode">
+      <label for="darkmode" class="sr-only">Toggle dark mode</label>
+      <input id="darkmode" type="checkbox" role="switch" aria-checked="false" />
+      <span style="font-size:.9rem;color:var(--muted)">Dark</span>
+    </div>
+  </div>
+</header>
+
 
   <!-- ---------- INTERNATIONAL SOURCES ---------- -->
   <section id="international">
