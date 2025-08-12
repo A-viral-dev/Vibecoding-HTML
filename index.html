@@ -21,6 +21,7 @@
   }
 
   /* Dark theme overrides */
+
   body.dark {
     --bg-main: #0f1724;
     --bg-card: #0b1220;
@@ -35,6 +36,24 @@
     --control-text: #e6eef8;
     --muted: #8f9fb1;
   }
+body.dark img[alt*="NYT"],
+body.dark img[alt*="WaPo"],
+body.dark img[alt*="BBC"],
+body.dark img[alt*="WSJ"],
+body.dark img[alt*="Reuters"],
+body.dark img[alt*="Atlantic"],
+body.dark img[alt*="Forbes"],
+body.dark img[alt*="Politico"],
+body.dark img[alt*="NDTV"],
+body.dark img[alt*="TOI"],
+body.dark img[alt*="Hindu"],
+body.dark img[alt*="HT"],
+body.dark img[alt*="Indian Express"],
+body.dark img[alt*="ET"],
+body.dark img[alt*="Wire"] {
+  filter: invert(1) hue-rotate(180deg);
+  background: none; /* no pad needed when inverted */
+}
 
   *{box-sizing: border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -150,7 +169,6 @@
     background:#fff; top:50%; transform:translateY(-50%); left:3px;
     transition:left .18s ease, background .18s ease;
   }
-  .dark-toggle input:checked::after{ left:21px; background:#fff; }
 
   /* Page sections */
   section{
